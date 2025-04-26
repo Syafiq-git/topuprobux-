@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top Up Robux | Roblox</title>
+
+    <!-- Fonts & CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .card.pilih-robux {
+            cursor: pointer;
+            transition: 0.3s;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card.pilih-robux:hover {
+            transform: translateY(-5px);
+            border-color: #6f42c1;
+            box-shadow: 0 4px 20px rgba(111, 66, 193, 0.2);
+        }
+        
+        .card.pilih-robux.selected {
+            border-color: #6f42c1;
+            background: #f3e8ff;
+            box-shadow: 0 0 10px rgba(111, 66, 193, 0.5);
+        }
+        /* Animation for Chameleon Border */
+        
+        .card.pilih-robux::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            background: linear-gradient(45deg, #6f42c1, #8e44ad, white, #5f27cd, #00d2ff, #6f42c1, white);
+            background-size: 400% 400%;
+            animation: chameleon 6s linear infinite;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 0;
+            filter: blur(20px);
+            /* Tambahan agar efek lebih soft dan premium */
+        }
+        
+        .card.pilih-robux .card-body {
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes chameleon {
+            0% {
+                background-position: 0 0;
+            }
+            25% {
+                background-position: 100% 0;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            75% {
+                background-position: 0 100%;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+        
+        .exclusive-card {
+            background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+            border: 2px solid #ff4d6d;
+            box-shadow: 0 0 10px rgba(255, 77, 109, 0.3);
+        }
+        
+        .exclusive-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+        }
+        
+        .harga-diskon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+        
+        #usernameAlert {
+            font-size: 0.9rem;
+            animation: shake 0.3s;
+        }
+        
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+            75% {
+                transform: translateX(-5px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        
+        #greeting {
+            color: black;
+        }
+        
+        #nama-user {
+            background: linear-gradient(270deg, #6f42c1, #8e44ad, #5f27cd, #00d2ff, #6f42c1);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: chameleonText 6s ease infinite;
+            font-weight: bold;
+        }
+        
+        @keyframes chameleonText {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                TOPUP ROBUX<br>
+                TERMURAH | TERPERCAYA <br>
+                <span id="greeting">
+                    Halo, <span id="nama-user"></span>!
+                </span>
+            </a>
+        </div>
+    </nav>
+
+
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <!-- Username Form -->
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">1. Masukkan Username Roblox</h5>
+                        <input type="text" id="username" class="form-control" placeholder="Masukkan Username" oninput="cekUsername()" required />
+                        <div id="usernameAlert" class="text-danger mt-2" style="display:none;">Username Roblox tidak ditemukan</div>
+                    </div>
+                </div>
+
+                <!-- Robux Packages -->
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">2. Pilih Paket Robux</h5>
+                        <div class="row g-3">
+                            <!-- Paket 1 -->
+                            <div class="col-6 col-md-4">
+                                <div class="card pilih-robux" onclick="pilihRobux(this, 500, 10999)">
+                                    <div class="card-body text-center">
+                                        <img src="robux.png" alt="Robux" width="50" />
+                                        <h6 class="mt-2">500 Robux</h6>
+                                        <div class="harga-diskon">
+                                            <span class="text-muted text-decoration-line-through">Rp 32.399</span>
+                                            <span class="text-success fw-semibold">Rp 10.999</span>
+                                            <span class="badge bg-danger">DISKON</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="card pilih-robux exclusive-card" onclick="pilihRobux(this, 40000, 59999)">
+                                    <div class="card-body text-center">
+                                        <img src="robux.png" alt="Robux" width="50" />
+                                        <h6 class="mt-2">40.000 Robux</h6>
+                                        <div class="harga-diskon">
+                                            <span class="text-muted text-decoration-line-through">Rp 229.000</span>
+                                            <span class="text-danger fw-bold">Rp 59.999</span>
+                                            <span class="badge bg-warning text-dark">EXCLUSIVE</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Paket 2 -->
+                            <div class="col-6 col-md-4">
+                                <div class="card pilih-robux" onclick="pilihRobux(this, 1000, 15000)">
+                                    <div class="card-body text-center">
+                                        <img src="robux.png" alt="Robux" width="50" />
+                                        <h6 class="mt-2">1000 Robux</h6>
+                                        <div class="harga-diskon">
+                                            <span class="text-muted text-decoration-line-through">Rp 47.299</span>
+                                            <span class="text-success fw-semibold">Rp 15.000</span>
+                                            <span class="badge bg-danger">DISKON</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Paket 3 -->
+                            <div class="col-6 col-md-4">
+                                <div class="card pilih-robux" onclick="pilihRobux(this, 1500, 23339)">
+                                    <div class="card-body text-center">
+                                        <img src="robux.png" alt="Robux" width="50" />
+                                        <h6 class="mt-2">1500 Robux</h6>
+                                        <div class="harga-diskon">
+                                            <span class="text-muted text-decoration-line-through">Rp 54.999</span>
+                                            <span class="text-success fw-semibold">Rp 23.339</span>
+                                            <span class="badge bg-danger">DISKON</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Paket 4 -->
+                            <div class="col-6 col-md-4">
+                                <div class="card pilih-robux" onclick="pilihRobux(this, 2500, 29999)">
+                                    <div class="card-body text-center">
+                                        <img src="robux.png" alt="Robux" width="50" />
+                                        <h6 class="mt-2">2500 Robux</h6>
+                                        <div class="harga-diskon">
+                                            <span class="text-muted text-decoration-line-through">Rp 65.499</span>
+                                            <span class="text-success fw-semibold">Rp 29.999</span>
+                                            <span class="badge bg-danger">DISKON</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Paket 5 -->
+
+                            <!-- Paket 6 -->
+                            <div class="col-6 col-md-4">
+                                <div class="card pilih-robux" onclick="pilihRobux(this, 124500, 105000)">
+                                    <div class="card-body text-center">
+                                        <img src="robux.png" alt="Robux" width="50" />
+                                        <h6 class="mt-2">124.500 Robux</h6>
+                                        <div class="harga-diskon">
+                                            <span class="text-muted text-decoration-line-through">Rp 609.399</span>
+                                            <span class="text-success fw-semibold">Rp 105.000</span>
+                                            <span class="badge bg-danger">DISKON</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lanjutkan -->
+                <div class="text-center mt-4">
+                    <button class="btn btn-primary px-5" onclick="lanjutPayment()">Lanjutkan Pembayaran</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+        let robuxDipilih = null;
+        let hargaDipilih = null;
+
+        function cekUsername() {
+            const username = document.getElementById("username").value;
+            document.getElementById("usernameAlert").style.display =
+                username.length < 7 ? "block" : "none";
+        }
+
+        function pilihRobux(element, jumlah, harga) {
+            robuxDipilih = jumlah;
+            hargaDipilih = harga;
+            document.querySelectorAll(".pilih-robux").forEach((card) =>
+                card.classList.remove("selected")
+            );
+            element.classList.add("selected");
+        }
+
+        function lanjutPayment() {
+            const username = document.getElementById("username").value;
+
+            if (username.length < 6) {
+                document.getElementById("usernameAlert").style.display = "block";
+                return;
+            }
+
+            if (!robuxDipilih) {
+                alert("Pilih paket Robux terlebih dahulu!");
+                return;
+            }
+
+            localStorage.setItem("username", username);
+            localStorage.setItem("robux", robuxDipilih);
+            localStorage.setItem("harga", hargaDipilih);
+            window.location.href = "payment.html";
+        }
+    </script>
+    <script>
+        window.onload = function() {
+            let nama = prompt("Silahkan masukkan nama anda : ");
+            if (!nama || nama.trim() === "") {
+                nama = "pelanggan";
+            }
+            document.getElementById("nama-user").textContent = nama;
+        };
+    </script>
+
+
+</body>
+
+</html>

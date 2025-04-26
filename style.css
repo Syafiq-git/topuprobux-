@@ -1,0 +1,161 @@
+/* Reset dasar */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #f8f9fa, #eef2ff);
+    color: #1f2937;
+    transition: background 0.3s ease-in-out;
+}
+
+
+/* Navbar */
+
+.navbar {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.7rem;
+    color: #6366f1;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #4f46e5;
+}
+
+
+/* Card */
+
+.card {
+    border: none;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #4f46e5;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+
+/* Robux Card */
+
+.pilih-robux {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 15px;
+}
+
+.pilih-robux:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: #6d28d9;
+    box-shadow: 0 8px 30px rgba(109, 40, 217, 0.15);
+}
+
+.pilih-robux.selected {
+    background: #ede9fe;
+    border-color: #6d28d9;
+    box-shadow: 0 0 20px rgba(109, 40, 217, 0.4);
+}
+
+
+/* Username Alert Shake */
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+#usernameAlert {
+    font-size: 0.9rem;
+    color: #dc2626;
+    animation: shake 0.3s;
+}
+
+
+/* Button */
+
+.btn-primary {
+    background: linear-gradient(to right, #6366f1, #8b5cf6);
+    border: none;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #4f46e5, #7c3aed);
+}
+
+.btn-success {
+    padding: 0.6rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    background: #10b981;
+    border: none;
+}
+
+.btn-success:hover {
+    background: #059669;
+}
+
+
+/* QR Image */
+
+#qrImage {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border: 6px solid #e5e7eb;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+
+/* Responsive Fix */
+
+@media (max-width: 576px) {
+    #qrImage {
+        width: 200px;
+        height: 200px;
+    }
+    .card-body {
+        padding: 1.2rem;
+    }
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+}
